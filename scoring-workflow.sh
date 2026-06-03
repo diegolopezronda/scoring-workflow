@@ -4,10 +4,10 @@ export PYTHONHTTPSVERIFY=0
 STEM_MODEL=${2:-""}
 SPOTIFY_LINK="$1"
 echo "Downloading track..."
-spotdl $1 --output "{artist}-{title}/in/{artist}-{title}.{output-ext}"
+python -m spotdl $1 --output "{artist}-{title}/in/{artist}-{title}.{output-ext}"
 FOLDER=$(ls -td */ | head -n 1) 
 FOLDER=${FOLDER%?}
-SLUG=$(slugify $FOLDER)
+SLUG=$(python -m slugify $FOLDER)
 mv "$FOLDER" "$SLUG"
 mv "$SLUG/in/$FOLDER.mp3" "$SLUG/in/$SLUG.mp3"
 echo "Track downloaded."
@@ -56,13 +56,13 @@ if [ -z "$STEM_MODEL" ]; then
 		esac 
 	done 
 fi 
-demucs $STEM_MODEL --filename "{track}-{stem}.{ext}" "$SLUG.mp3"
+python -m demucs $STEM_MODEL --filename "{track}-{stem}.{ext}" "$SLUG.mp3"
 mv separated/$STEM_FOLDER/*.* .
 rm -rf separated
 echo "Stems separated."
 ls -1 *.wav
 echo "Generating MIDI files..."
-for f in *.wav; do transkun "$f" "${f%.wav}.mid"; done
+for f in *.wav; do python -m transkun.transcribe "$f" "${f%.wav}.mid"; done
 mkdir ../out
 mkdir ../src
 mv *.mid ../src
