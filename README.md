@@ -3,16 +3,20 @@ An AI based workflow to start scoring covers.
 
 ## Dependencies
 
-- FFMPEG >= 7 (in Windows, install the _shared_ version)
+### Mac and Linux dependencies
+
+- FFMPEG >= 7
 - Python >= 3.8
 
 ### Windows dependencies
 
+- Python >= 3.8
+- FFMPEG Shared Version >= 7 
 - Visual Studio tools for C++
 
 ## Installation
 
-Please run `./install.sh` to install the required dependencies.
+After installing dependencies, please run `./install.sh` to install the required dependencies.
 
 ## Workflow
 
