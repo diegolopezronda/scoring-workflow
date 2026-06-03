@@ -3,7 +3,12 @@ An AI based workflow to start scoring covers.
 
 ## Dependencies
 
-- Python 3.8
+- FFMPEG >= 7 (in Windows, install the _shared_ version)
+- Python >= 3.8
+
+### Windows dependencies
+
+- Visual Studio tools for C++
 
 ## Installation
 
